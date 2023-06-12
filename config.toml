@@ -1,0 +1,18 @@
+[events]
+publish = "tcp://selenium-hub.finanzen.check24-int.de:32442"
+subscribe = "tcp://selenium-hub.finanzen.check24-int.de:32443"
+
+[node]
+session-timeout = "300"
+override-max-sessions = false
+detect-drivers = false
+drain-after-session-count = 0
+max-sessions = 1
+
+[relay]
+# Default Appium server endpoint
+url = "http://localhost:4723/wd/hub"
+status-endpoint = "/status"
+# Stereotypes supported by the service
+configs = [
+"1", "{\"browserName\": \"Pixel\", \"platformName\": \"android\", \"appium:platformVersion\": \"10\", \"appium:udid\": \"192.168.49.183:5555\", \"appium:port\":\"6300\"}"]
