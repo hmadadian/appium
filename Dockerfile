@@ -1,3 +1,4 @@
+
 FROM maven:3-amazoncorretto-17-debian-bullseye
 
 WORKDIR /root
@@ -67,13 +68,9 @@ RUN nodejs_lts_latest=$(curl -s https://nodejs.org/download/release/index.json |
 #================================================
 RUN mkdir -p /opt/selenium \
     && selenium_latest=$(curl -s https://api.github.com/repos/SeleniumHQ/selenium/releases/latest | jq -r -c '.assets[] | select(.name | contains (".jar")).browser_download_url') \
-    && selenium_toolkit_latest=$(curl -s https://api.github.com/repos/SeleniumHQ/selenium/releases/latest | jq -r -c '.assets[] | select(.name | contains ("java")).browser_download_url') \
+    && selenium_version=$(curl -s https://api.github.com/repos/SeleniumHQ/selenium/releases/latest | jq -r '.tag_name' | sed 's/^selenium-//' ) \
     && wget $selenium_latest -O /opt/selenium/selenium-server.jar \
-    && wget $selenium_toolkit_latest -O /root/selenium-java.zip \
-    && yes | unzip /root/selenium-java.zip -d /root/selenium-toolkit \
-    && http_toolkit=$(ls /root/selenium-toolkit | grep -E '^(.*http)([^s]|s[^o]|so[^u]|sou[^r])*\.jar$') \
-    && mv /root/selenium-toolkit/${http_toolkit} /opt/selenium/selenium-http-jdk-client.jar \
-    && rm -rf /root/selenium-toolkit /root/selenium-java.zip
+    && wget https://repo1.maven.org/maven2/org/seleniumhq/selenium/selenium-http-jdk-client/${selenium_version}/selenium-http-jdk-client-${selenium_version}.jar -O /opt/selenium/selenium-http-jdk-client.jar
 
 #================================================
 # Logging

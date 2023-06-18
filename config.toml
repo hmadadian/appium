@@ -1,6 +1,11 @@
+[server]
+host = "192.168.10.19"
+port = 5555
+
+
 [events]
-publish = "tcp://selenium-hub.finanzen.check24-int.de:32442"
-subscribe = "tcp://selenium-hub.finanzen.check24-int.de:32443"
+publish = "tcp://192.168.10.10:6442"
+subscribe = "tcp://192.168.10.10:6443"
 
 [node]
 session-timeout = "300"
@@ -15,4 +20,4 @@ url = "http://localhost:4723/wd/hub"
 status-endpoint = "/status"
 # Stereotypes supported by the service
 configs = [
-"1", "{\"browserName\": \"Pixel\", \"platformName\": \"android\", \"appium:platformVersion\": \"10\", \"appium:udid\": \"192.168.49.183:5555\", \"appium:port\":\"6300\"}"]
+"1", "{\"browserName\": \"OnePlus\", \"platformName\": \"android\", \"appium:platformVersion\": \"9\", \"appium:udid\": \"192.168.10.18:5555\", \"appium:port\":\"6300\"}"]
